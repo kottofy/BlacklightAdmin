@@ -9,7 +9,10 @@ namespace BlacklightAdmin
 {
     public class Messaging
     {
-
+        public static String getID()
+        {
+            return DateTime.Now.ToBinary().ToString();
+        }
 
         public static async void InsertChatMessage(ChatMessage message)
         {

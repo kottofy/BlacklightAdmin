@@ -14,7 +14,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace BlacklightAdmin.Views
 {
@@ -51,7 +50,7 @@ namespace BlacklightAdmin.Views
 
         private void InsertData_click(object sender, RoutedEventArgs e)
         {
-            var idrandom = DateTime.Now.ToBinary().ToString() + messageTxt.Text;
+            string idrandom = Messaging.getID();
 
             InspirationMessage msg = new InspirationMessage
             {

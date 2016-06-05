@@ -14,7 +14,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace BlacklightAdmin.Views
 {
@@ -50,7 +49,7 @@ namespace BlacklightAdmin.Views
 
         private void InsertCouponMessage_Click(object sender, RoutedEventArgs e)
         {
-            var idrandom = DateTime.Now.ToBinary().ToString() + couponTxt.Text;
+            var idrandom = Messaging.getID();
 
             CouponMessage msg = new CouponMessage
             {
@@ -67,21 +66,15 @@ namespace BlacklightAdmin.Views
 
 
         private async void RetriveCouponMessage_Click(object sender, RoutedEventArgs e)
-
         {
-
-            //List<Message> allMessages = Messaging.RetrieveMessage();
 
             List<CouponMessage> allMessages = await App.MobileService.GetTable<CouponMessage>().ToListAsync();
 
             string res = "";
 
             foreach (CouponMessage mess in allMessages)
-
             {
-
                 res += "Message :" + mess.coupon_content + "\n\n";
-
             }
 
             var m1 = new MessageDialog(res).ShowAsync();
