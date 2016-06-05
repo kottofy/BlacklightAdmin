@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="BlacklightAdmin.Views.Coupons"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BlacklightAdmin"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+>
+
+    <SplitView x:Name="MySplitView" DisplayMode="CompactOverlay"  IsPaneOpen="False" 
+               CompactPaneLength="50" OpenPaneLength="150">
+
+        <SplitView.Background>
+            <ImageBrush ImageSource="../Assets/girl.jpg"  Stretch="UniformToFill"  />
+        </SplitView.Background>
+
+        <SplitView.Pane>
+            <StackPanel Background="Turquoise">
+
+                <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
+                    Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="HomeButton" FontFamily="Segoe MDL2 Assets" Content="&#xE80F;"
+                    Width="50" Height="50" Background="Transparent"  Click="HomeButton_Click"/>
+                    <Button Content="Home" Click="HomeButton_Click" Background="Transparent"></Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="CouponButton" FontFamily="Segoe MDL2 Assets" Content="&#xE719;"
+                        Width="50" Height="50" Background="Transparent" Click="CouponButton_Click"/>
+                    <Button Content="Coupon" Click="CouponButton_Click" Background="Transparent"></Button>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="InspirationButton" FontFamily="Segoe MDL2 Assets" Content="&#xE006;"
+                        Width="50" Height="50" Background="Transparent" Click="InspirationButton_Click"/>
+                    <Button Content="Inspiration" Click="InspirationButton_Click" Background="Transparent"></Button>
+                </StackPanel>
+
+            </StackPanel>
+        </SplitView.Pane>
+        <SplitView.Content>
+            <StackPanel>
+                <TextBlock Text="Coupons" Foreground="White" HorizontalAlignment="Center" FontSize="40"></TextBlock>
+                <TextBox x:Name="couponTxt" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" PlaceholderText="Enter message" FontSize="33.333"/>
+                <Button x:Name="insertCouponMsg" Content="Insert" HorizontalAlignment="Center" FontSize="40" Click="InsertCouponMessage_Click" Foreground="White" VerticalAlignment="Center"/>
+                <Button x:Name="retrieveCouponMsg" Content="Retrieve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Click="RetriveCouponMessage_Click" Foreground="White"/>
+
+            </StackPanel>
+        </SplitView.Content>
+    </SplitView>
+</Page>
