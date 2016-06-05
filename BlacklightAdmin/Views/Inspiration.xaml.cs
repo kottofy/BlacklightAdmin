@@ -53,13 +53,13 @@ namespace BlacklightAdmin.Views
         {
             var idrandom = DateTime.Now.ToBinary().ToString() + messageTxt.Text;
 
-            Message msg = new Message
+            InspirationMessage msg = new InspirationMessage
             {
                 id = idrandom,
                 content = messageTxt.Text
             };
 
-            Messaging.InsertMessage(msg);
+            Messaging.InsertInspirationMessage(msg);
 
             var m1 = new MessageDialog("Data Inserted: " + msg.content).ShowAsync();
 
@@ -71,11 +71,11 @@ namespace BlacklightAdmin.Views
         {
             //List<Message> allMessages = Messaging.RetrieveMessage();
 
-            List<Message> allMessages = await App.MobileService.GetTable<Message>().ToListAsync();
+            List<InspirationMessage> allMessages = await App.MobileService.GetTable<InspirationMessage>().ToListAsync();
 
             string res = "";
 
-            foreach (Message mess in allMessages)
+            foreach (InspirationMessage mess in allMessages)
             {
                 res += "Message :" + mess.content + "\n\n";
             }

@@ -10,14 +10,8 @@
 
 
     <SplitView  x:Name="MySplitView" DisplayMode="CompactOverlay"  IsPaneOpen="False" 
-               CompactPaneLength="50" OpenPaneLength="150">
-        
-        <SplitView.Background>
-            <ImageBrush ImageSource="../Assets/girl.jpg"  Stretch="UniformToFill"  />
-        </SplitView.Background>
-        
+               CompactPaneLength="50" OpenPaneLength="150" Background="Black">
         <SplitView.Pane>
-            
             <StackPanel Background="Turquoise">
 
                 <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
@@ -28,8 +22,6 @@
                     Width="50" Height="50" Background="Transparent"  Click="HomeButton_Click"/>
                     <Button Content="Home" Click="HomeButton_Click" Background="Transparent"></Button>
                 </StackPanel>
-
-          
 
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="CouponButton" FontFamily="Segoe MDL2 Assets" Content="&#xE719;"
@@ -47,6 +39,26 @@
         </SplitView.Pane>
         <SplitView.Content>
             <RelativePanel>
+                <TextBlock x:Name="name" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Text="Admin"  Foreground="White" FontSize="33.333"></TextBlock>
+
+                <ListView x:Name="lv" ItemsSource="{Binding Messages}" RelativePanel.Above="rp" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="name" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="local:ChatMessage">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock >
+                                    <Run Text="{x:Bind Username}" Foreground="White"  FontSize="33.333"></Run>
+                                    <Run Text=": "  FontSize="33.333"></Run>
+                                    <Run Text="{x:Bind Message}" Foreground="White"  FontSize="33.333"></Run>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <RelativePanel x:Name="rp" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <TextBox x:Name="text" RelativePanel.AlignLeftWithPanel="True" RelativePanel.LeftOf="send" PlaceholderText="Message" BorderBrush="White"  FontSize="33.333"></TextBox>
+                    <Button x:Name="send" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" FontFamily="Segoe MDL2 Assets" Content="&#xE724;" Click="send_Click" Background="HotPink" BorderBrush="White" Margin="0.333,0,0,0" VerticalAlignment="Bottom" Width="50" Height="56" FontSize="33.333"></Button>
+                </RelativePanel>
 
             </RelativePanel>
         </SplitView.Content>

@@ -10,9 +10,15 @@ namespace BlacklightAdmin
     public class Messaging
     {
 
-        public static async void InsertMessage(Message message)
+
+        public static async void InsertChatMessage(ChatMessage message)
         {
-            await App.MobileService.GetTable<Message>().InsertAsync(message);
+            await App.MobileService.GetTable<ChatMessage>().InsertAsync(message);
+        }
+
+        public static async void InsertInspirationMessage(InspirationMessage message)
+        {
+            await App.MobileService.GetTable<InspirationMessage>().InsertAsync(message);
         }
 
         public static async void InsertCouponMessage(CouponMessage message)

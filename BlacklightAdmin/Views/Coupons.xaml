@@ -42,13 +42,13 @@
             </StackPanel>
         </SplitView.Pane>
         <SplitView.Content>
-            <StackPanel>
-                <TextBlock Text="Coupons" Foreground="White" HorizontalAlignment="Center" FontSize="40"></TextBlock>
-                <TextBox x:Name="couponTxt" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" PlaceholderText="Enter message" FontSize="33.333"/>
-                <Button x:Name="insertCouponMsg" Content="Insert" HorizontalAlignment="Center" FontSize="40" Click="InsertCouponMessage_Click" Foreground="White" VerticalAlignment="Center"/>
-                <Button x:Name="retrieveCouponMsg" Content="Retrieve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Click="RetriveCouponMessage_Click" Foreground="White"/>
+            <RelativePanel>
+                <TextBlock Text="Coupons" Foreground="White" RelativePanel.AlignHorizontalCenterWithPanel="True" FontSize="50"></TextBlock>
+                <TextBox x:Name="couponTxt" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" PlaceholderText="Enter message" FontSize="33.333"/>
+                <Button x:Name="insertCouponMsg" Content="Insert" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="couponTxt" FontSize="40" Click="InsertCouponMessage_Click" Foreground="White" VerticalAlignment="Center"/>
+                <Button x:Name="retrieveCouponMsg" Content="Retrieve" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignBottomWithPanel="True" FontSize="40" Click="RetriveCouponMessage_Click" Foreground="White"/>
 
-            </StackPanel>
+            </RelativePanel>
         </SplitView.Content>
     </SplitView>
 </Page>

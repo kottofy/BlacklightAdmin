@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.AspNet.SignalR.Client;
+using Windows.UI.Core;
 
 namespace BlacklightAdmin
 {
@@ -24,17 +26,54 @@ namespace BlacklightAdmin
     sealed partial class App : Application
     {
 
-            public static MobileServiceClient MobileService =
+        public ChatMessageViewModel ChatVM { get; set; } = new ChatMessageViewModel();
+        public HubConnection conn { get; set; }
+        public IHubProxy proxy { get; set; }
+
+
+        public static MobileServiceClient MobileService =
                 new MobileServiceClient(
                     "https://safechat.azurewebsites.net"
     );
 
-            /// <summary>
-            /// Invoked when the application is launched normally by the end user.  Other entry points
-            /// will be used such as when the application is launched to open a specific file.
-            /// </summary>
-            /// <param name="e">Details about the launch request and process.</param>
-            protected override void OnLaunched(LaunchActivatedEventArgs e)
+        /// <summary>
+        /// Initializes the singleton application object.  This is the first line of authored code
+        /// executed, and as such is the logical equivalent of main() or WinMain().
+        /// </summary>
+        public App()
+        {
+            this.InitializeComponent();
+            this.Suspending += OnSuspending;
+            SignalR();
+        }
+        public void SignalR()
+        {
+            conn = new HubConnection("http://BlacklightBackend.azurewebsites.net");
+            proxy = conn.CreateHubProxy("ChatHub");
+            conn.Start();
+
+            proxy.On<ChatMessage>("broadcastMessage", OnMessage);
+
+        }
+        public void Broadcast(ChatMessage msg)
+        {
+            proxy.Invoke("Send", msg);
+        }
+        private async void OnMessage(ChatMessage msg)
+        {
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                ChatVM.Messages.Add(msg);
+            });
+        }
+
+
+        /// <summary>
+        /// Invoked when the application is launched normally by the end user.  Other entry points
+        /// will be used such as when the application is launched to open a specific file.
+        /// </summary>
+        /// <param name="e">Details about the launch request and process.</param>
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)

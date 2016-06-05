@@ -42,14 +42,14 @@
             </StackPanel>
         </SplitView.Pane>
         <SplitView.Content>
-            <StackPanel>
+            <RelativePanel>
 
-                <TextBlock Text="Inspiration" Foreground="White" HorizontalAlignment="Center" FontSize="40"></TextBlock>
-                <TextBox x:Name="messageTxt" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" PlaceholderText="Enter message" FontSize="33.333"/>
-                <Button x:Name="button" Content="Insert" HorizontalAlignment="Center" FontSize="40" Click="InsertData_click" Foreground="White" VerticalAlignment="Center"/>
-                <Button x:Name="button1" Content="Retrieve" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Click="Retrive_Click" Foreground="White"/>
+                <TextBlock Text="Inspiration" Foreground="White" RelativePanel.AlignHorizontalCenterWithPanel="True" FontSize="40"></TextBlock>
+                <TextBox x:Name="messageTxt" RelativePanel.AlignVerticalCenterWithPanel="True" TextWrapping="Wrap" Text="" RelativePanel.AlignHorizontalCenterWithPanel="True" PlaceholderText="Enter message" FontSize="33.333"/>
+                <Button x:Name="insertInspirationButton" Content="Insert" RelativePanel.Below="messageTxt" FontSize="40" Click="InsertData_click" Foreground="White" RelativePanel.AlignHorizontalCenterWithPanel="True"  />
+                <Button x:Name="button1" Content="Retrieve" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True"  FontSize="30" Click="Retrive_Click" Foreground="White"/>
 
-            </StackPanel>
+            </RelativePanel>
         </SplitView.Content>
     </SplitView>
 </Page>
